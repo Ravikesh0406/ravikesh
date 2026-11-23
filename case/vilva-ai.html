@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vilva.ai Case Study: 1,557 Organic Referral Sessions in 30 Days | Ravikesh</title>
+  <meta name="description" content="How a 1-month Reddit trial drove 1,557 targeted sessions and 84 qualified trial signups for Vilva.ai with zero subreddit bans.">
+  <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Vilva.ai Case Study: 1,557 Referral Sessions in 30 Days">
+  <meta property="og:description" content="How a 1-month Reddit trial drove 84 qualified trial signups for Vilva.ai with zero subreddit bans.">
+  <meta property="og:image" content="../assets/og-image.svg">
+  <meta property="og:type" content="article">
+
+  <style>
+    :root {
+      --bg: #dae0e6;
+      --card-bg: #ffffff;
+      --border: #ccc;
+      --text-main: #1c1c1c;
+      --text-muted: #7c7c7c;
+      --reddit-orange: #ff4500;
+      --reddit-blue: #0079d3;
+      --upvote-orange: #ff4500;
+      --downvote-blue: #7193ff;
+      --nav-bg: #ffffff;
+      --sidebar-card: #ffffff;
+      --sidebar-header: #0079d3;
+    }
+    [data-theme="dark"] {
+      --bg: #030303;
+      --card-bg: #1a1a1b;
+      --border: #343536;
+      --text-main: #d7dadc;
+      --text-muted: #818384;
+      --reddit-orange: #ff4500;
+      --reddit-blue: #33a8ff;
+      --nav-bg: #1a1a1b;
+      --sidebar-card: #1a1a1b;
+      --sidebar-header: #24A0ED;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+    a { color: var(--reddit-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    
+    /* Top Bar */
+    .top-nav {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--text-main);
+    }
+    .brand-icon {
+      width: 28px;
+      height: 28px;
+      background: var(--reddit-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 14px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      text-decoration: none !important;
+    }
+    .btn-orange {
+      background: var(--reddit-orange);
+      color: #fff;
+    }
+    .btn-orange:hover { background: #e03d00; }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--reddit-blue);
+      color: var(--reddit-blue);
+    }
+    .btn-outline:hover { background: rgba(0, 121, 211, 0.08); }
+    .btn-theme {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 8px;
+      cursor: pointer;
+    }
+
+    /* Layout */
+    .container {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 24px;
+    }
+    @media (max-width: 820px) {
+      .container { grid-template-columns: 1fr; }
+    }
+
+    /* Post Card */
+    .post-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .vote-column {
+      width: 44px;
+      background: rgba(0,0,0,0.02);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 8px 4px;
+      gap: 4px;
+    }
+    .vote-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 2px;
+      border-radius: 2px;
+    }
+    .vote-btn:hover { background: rgba(0,0,0,0.06); }
+    .vote-count {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .post-content {
+      flex: 1;
+      padding: 16px 20px;
+    }
+    .post-header {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .flair {
+      background: #edeff1;
+      color: #1a1a1b;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    [data-theme="dark"] .flair {
+      background: #272729;
+      color: #d7dadc;
+    }
+    .flair-green {
+      background: #d4edda;
+      color: #155724;
+    }
+    [data-theme="dark"] .flair-green {
+      background: #14381e;
+      color: #46d160;
+    }
+    
+    h1.post-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+    .result-badge {
+      display: inline-block;
+      background: rgba(255, 69, 0, 0.1);
+      border: 1px solid rgba(255, 69, 0, 0.3);
+      color: var(--reddit-orange);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .section-block {
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--reddit-orange);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+    }
+    .prose {
+      font-size: 14px;
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+    .prose p { margin-bottom: 12px; }
+    .prose ul { margin-left: 20px; margin-bottom: 12px; }
+    .prose li { margin-bottom: 6px; }
+
+    .learned-box {
+      background: rgba(0, 121, 211, 0.08);
+      border-left: 4px solid var(--reddit-blue);
+      padding: 12px 16px;
+      border-radius: 0 4px 4px 0;
+      margin-top: 12px;
+      font-style: italic;
+    }
+
+    /* Embedded chart image */
+    .proof-img {
+      width: 100%;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      margin: 12px 0 18px 0;
+      background: #1A1A1B;
+    }
+
+    /* Sidebar */
+    .sidebar-card {
+      background: var(--sidebar-card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .sidebar-header {
+      background: var(--sidebar-header);
+      color: #fff;
+      padding: 12px 16px;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .sidebar-body {
+      padding: 16px;
+      font-size: 13px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-row:last-child { border-bottom: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Nav -->
+  <header class="top-nav">
+    <a href="../index.html" class="brand-group">
+      <div class="brand-icon">r/</div>
+      <span>r/Ravikesh</span>
+    </a>
+    <div style="display: flex; align-items: center;">
+      <button class="btn-theme" id="themeToggle" title="Toggle theme">◐</button>
+      <a href="../index.html" class="btn btn-outline" style="margin-right: 8px;">← All Cases</a>
+      <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial" class="btn btn-orange">Book a month trial</a>
+    </div>
+  </header>
+
+  <!-- Container -->
+  <div class="container">
+    <main>
+      <article class="post-card">
+        <!-- Vote Column -->
+        <div class="vote-column">
+          <button class="vote-btn" onclick="alert('Upvoted!')">▲</button>
+          <span class="vote-count">1.5k</span>
+          <button class="vote-btn" onclick="alert('Downvoted')">▼</button>
+        </div>
+
+        <div class="post-content">
+          <!-- Meta Header -->
+          <div class="post-header">
+            <span>Posted by u/ravikesh_growth</span>
+            <span>•</span>
+            <span class="flair flair-green">[Verified Trial]</span>
+            <span class="flair">r/SaaS</span>
+            <span class="flair">AI Product</span>
+          </div>
+
+          <h1 class="post-title">Vilva.ai: 1,557 Referral Sessions and 84 Active Trials in 30 Days</h1>
+          
+          <div class="result-badge">
+            Result: 1,557 sessions • 84 signups • 0 bans • 5.39% conversion
+          </div>
+
+          <!-- Proof Chart -->
+          <img src="../assets/vilva-analytics.svg" alt="Vilva.ai 30-day analytics chart" class="proof-img" />
+
+          <!-- Context -->
+          <div class="section-block">
+            <div class="section-title">Context</div>
+            <div class="prose">
+              <p>Vilva.ai is an early-stage AI automation product. Prior to our 1-month trial, they had near-zero organic presence on Reddit. Like many technical SaaS founders, their team hesitated to post because they were terrified of getting called out for spam or having their domain blocked by auto-moderators.</p>
+            </div>
+          </div>
+
+          <!-- Challenge -->
+          <div class="section-block">
+            <div class="section-title">The Challenge</div>
+            <div class="prose">
+              <p>Target communities like r/productivity, r/artificial, and r/technology were saturated with generic "look at my revolutionary AI tool" promo dumps. Community members downvoted self-promo immediately, and moderators had tight karma filters. Vilva needed high-signal visibility among real power users without looking like a vendor pitch.</p>
+            </div>
+          </div>
+
+          <!-- What I Did -->
+          <div class="section-block">
+            <div class="section-title">What I Did (The 4-Week Month Plan)</div>
+            <div class="prose">
+              <ul>
+                <li><strong>Week 1 (Research &amp; Setup):</strong> Audited 16 target subreddits. Mapped recurring pain points where users complained about repetitive manual workflows. Checked mod rules and created an authentic technical profile.</li>
+                <li><strong>Week 2 (First Engagement):</strong> Answered 12 existing user questions with deep, actionable troubleshooting tutorials. Zero links in initial comments; focused on establishing technical credibility first.</li>
+                <li><strong>Week 3 (Community &amp; Content):</strong> Shared an engineering breakdown of how we solved workflow latency. Placed a transparent disclosure link only when community members explicitly asked what tool was used.</li>
+                <li><strong>Week 4 (Review with Numbers):</strong> Synthesized analytics, referral conversion paths, and delivered an actionable playbook for their in-house team.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Results -->
+          <div class="section-block">
+            <div class="section-title">Verified Results</div>
+            <div class="prose">
+              <ul>
+                <li><strong>1,557 total sessions</strong> driven directly from organic Reddit threads.</li>
+                <li><strong>84 qualified trial signups</strong> (5.39% conversion rate).</li>
+                <li><strong>0 subreddit bans</strong> and 0 moderator warnings across 30 days.</li>
+                <li>Two evergreen problem-solving comments that continue to rank in Google discussions search results.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Reddit Posts -->
+          <div class="section-block">
+            <div class="section-title">Live Thread Strategy</div>
+            <div class="prose">
+              <p>Every post was anchored in transparency. When recommending Vilva, the response always began with: <em>"Disclaimer: I contribute to Vilva.ai, but here is how you can also solve this manually using open-source Python scripts..."</em>. Redditors upvoted the honesty.</p>
+            </div>
+          </div>
+
+          <!-- What I Learned -->
+          <div class="section-block">
+            <div class="section-title">What I Learned</div>
+            <div class="learned-box prose">
+              <p>Reddit communities do not hate commercial tools; they hate dishonesty. When you give users the free manual fix first and only offer your tool as a time-saving convenience, users willingly upvote your link and thank you for saving them hours.</p>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <!-- Sidebar -->
+    <aside>
+      <div class="sidebar-card">
+        <div class="sidebar-header">Engagement Snapshot</div>
+        <div class="sidebar-body">
+          <div class="stat-row">
+            <span style="color:var(--text-muted)">Client</span>
+            <strong>Vilva.ai</strong>
+          </div>
+          <div class="stat-row">
+            <span style="color:var(--text-muted)">Duration</span>
+            <strong>1-Month Trial</strong>
+          </div>
+          <div class="stat-row">
+            <span style="color:var(--text-muted)">Category</span>
+            <strong>AI &amp; Automation</strong>
+          </div>
+          <div class="stat-row">
+            <span style="color:var(--text-muted)">Traffic Lift</span>
+            <strong style="color:var(--reddit-orange)">1,557 Sessions</strong>
+          </div>
+          <div class="stat-row">
+            <span style="color:var(--text-muted)">Moderator Flags</span>
+            <strong style="color:#46D160">0 Flags</strong>
+          </div>
+          <div style="margin-top: 16px;">
+            <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial" class="btn btn-orange" style="width: 100%;">Book a Month Trial</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+  </script>
+</body>
+</html>

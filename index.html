@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ravikesh — Reddit Growth for Startups | 1-Month Trial Engagement</title>
+  <meta name="description" content="I help early-stage SaaS, AI tools, and indie founders get real visibility on Reddit without spam. Work with me for a month, then judge.">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+  <!-- Open Graph / Facebook / LinkedIn -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ravikesh.com">
+  <meta property="og:title" content="Ravikesh — Reddit Growth for Startups">
+  <meta property="og:description" content="Work with me for a month. Then judge. Honest, community-aware Reddit marketing with zero spam.">
+  <meta property="og:image" content="assets/og-image.svg">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ravikesh — Reddit Growth for Startups">
+  <meta name="twitter:description" content="Work with me for a month. Then judge. Proven Reddit case studies for SaaS and indie founders.">
+  <meta name="twitter:image" content="assets/og-image.svg">
+
+  <style>
+    :root {
+      --bg: #dae0e6;
+      --card-bg: #ffffff;
+      --border: #ccc;
+      --border-subtle: #edeff1;
+      --text-main: #1c1c1c;
+      --text-muted: #7c7c7c;
+      --reddit-orange: #ff4500;
+      --reddit-blue: #0079d3;
+      --upvote-orange: #ff4500;
+      --downvote-blue: #7193ff;
+      --nav-bg: #ffffff;
+      --sidebar-card: #ffffff;
+      --sidebar-header: #0079d3;
+      --comment-bg: #f8f9fa;
+      --toast-bg: #1c1c1c;
+      --toast-text: #ffffff;
+    }
+
+    [data-theme="dark"] {
+      --bg: #030303;
+      --card-bg: #1a1a1b;
+      --border: #343536;
+      --border-subtle: #272729;
+      --text-main: #d7dadc;
+      --text-muted: #818384;
+      --reddit-orange: #ff4500;
+      --reddit-blue: #33a8ff;
+      --nav-bg: #1a1a1b;
+      --sidebar-card: #1a1a1b;
+      --sidebar-header: #24a0ed;
+      --comment-bg: #222223;
+      --toast-bg: #ffffff;
+      --toast-text: #1a1a1b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a { color: var(--reddit-blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Top Navigation */
+    .top-nav {
+      background: var(--nav-bg);
+      border-bottom: 1px solid var(--border);
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 15px;
+      color: var(--text-main);
+      text-decoration: none !important;
+    }
+    .brand-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--reddit-orange);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 900;
+      font-size: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    }
+    
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-tab {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 20px;
+      transition: all 0.15s ease;
+      text-decoration: none !important;
+    }
+    .nav-tab:hover {
+      background: rgba(0,0,0,0.05);
+      color: var(--text-main);
+    }
+    .nav-tab.active {
+      background: var(--reddit-orange);
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s ease;
+      text-decoration: none !important;
+      line-height: 1;
+    }
+    .btn-orange {
+      background: var(--reddit-orange);
+      color: #ffffff !important;
+      border-color: #ff4500;
+    }
+    .btn-orange:hover {
+      background: #e03d00;
+      box-shadow: 0 2px 8px rgba(255,69,0,0.3);
+    }
+    .btn-outline {
+      background: transparent;
+      border-color: var(--reddit-blue);
+      color: var(--reddit-blue);
+    }
+    .btn-outline:hover {
+      background: rgba(0, 121, 211, 0.08);
+    }
+    .btn-sm {
+      font-size: 12px;
+      padding: 5px 12px;
+    }
+    .btn-theme {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn-theme:hover {
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+
+    /* Subreddit Banner Header */
+    .subreddit-banner {
+      background: linear-gradient(135deg, #FF4500 0%, #FF8717 100%);
+      color: #fff;
+      padding: 24px 20px 20px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .banner-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .banner-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(0,0,0,0.25);
+      backdrop-filter: blur(4px);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      align-self: flex-start;
+    }
+    .banner-pulse {
+      width: 7px;
+      height: 7px;
+      background: #46D160;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #46D160;
+    }
+    .banner-title {
+      font-size: 26px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .banner-subtitle {
+      font-size: 14px;
+      opacity: 0.95;
+      max-width: 650px;
+    }
+
+    /* Main Container */
+    .main-wrap {
+      max-width: 1040px;
+      margin: 20px auto 40px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 310px;
+      gap: 24px;
+    }
+    @media (max-width: 860px) {
+      .main-wrap { grid-template-columns: 1fr; }
+      .nav-tabs { display: none; }
+    }
+
+    /* Post Card */
+    .post-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      display: flex;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .post-card:hover {
+      border-color: #898989;
+    }
+    .post-card.pinned {
+      border-left: 4px solid var(--reddit-orange);
+    }
+
+    /* Vote Column */
+    .vote-col {
+      width: 44px;
+      background: rgba(0,0,0,0.02);
+      border-right: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 10px 4px;
+      gap: 4px;
+      user-select: none;
+    }
+    .vote-arrow {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 15px;
+      padding: 2px 4px;
+      border-radius: 3px;
+      transition: color 0.1s ease, transform 0.1s ease;
+    }
+    .vote-arrow:hover { background: rgba(0,0,0,0.05); }
+    .vote-arrow.up.voted {
+      color: var(--upvote-orange) !important;
+      font-weight: 900;
+      transform: translateY(-2px);
+    }
+    .vote-arrow.down.voted {
+      color: var(--downvote-blue) !important;
+      font-weight: 900;
+      transform: translateY(2px);
+    }
+    .vote-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Post Body */
+    .post-body {
+      flex: 1;
+      padding: 14px 18px;
+    }
+    .post-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .flair {
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+    }
+    .flair-orange { background: #ffe6dc; color: #ff4500; }
+    [data-theme="dark"] .flair-orange { background: #3d1b10; color: #ff8a65; }
+    .flair-green { background: #d4edda; color: #155724; }
+    [data-theme="dark"] .flair-green { background: #14381e; color: #46d160; }
+    .flair-blue { background: #e3f2fd; color: #0d47a1; }
+    [data-theme="dark"] .flair-blue { background: #15293d; color: #82b1ff; }
+    .flair-purple { background: #f3e5f5; color: #4a148c; }
+    [data-theme="dark"] .flair-purple { background: #3c1e48; color: #ce93d8; }
+
+    .post-h1 {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+    .post-h2 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .pinned-hero-lead {
+      font-size: 15px;
+      color: var(--text-main);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .cta-hero-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding-top: 8px;
+      margin-bottom: 12px;
+    }
+
+    .result-callout {
+      background: rgba(255, 69, 0, 0.08);
+      border: 1px solid rgba(255, 69, 0, 0.25);
+      border-radius: 4px;
+      padding: 8px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--reddit-orange);
+      margin: 10px 0 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .post-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .post-footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-muted);
+      padding-top: 10px;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .post-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      color: var(--text-muted);
+      text-decoration: none !important;
+    }
+    .post-action:hover { color: var(--text-main); }
+
+    /* Section Headers */
+    .section-anchor {
+      scroll-margin-top: 70px;
+    }
+    .section-header-row {
+      margin: 32px 0 14px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .section-header-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-weight: 800;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 4-Week Process Grid */
+    .week-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) {
+      .week-grid { grid-template-columns: 1fr; }
+    }
+    .week-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      transition: transform 0.15s ease;
+    }
+    .week-card:hover { transform: translateY(-2px); }
+    .week-badge {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--reddit-orange);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .week-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .week-text {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Who this is for pills */
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    @media (max-width: 600px) {
+      .who-grid { grid-template-columns: 1fr; }
+    }
+    .who-box {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 12px 14px;
+    }
+    .who-tag {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .who-tag::before {
+      content: "•";
+      color: var(--reddit-orange);
+      font-size: 16px;
+    }
+    .who-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Testimonial Comments Section */
+    .testimonial-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .comment-item {
+      background: var(--comment-bg);
+      border-left: 3px solid var(--reddit-orange);
+      padding: 12px 14px;
+      border-radius: 4px;
+      margin-bottom: 12px;
+    }
+    .comment-item:last-child { margin-bottom: 0; }
+    .comment-top {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .comment-user {
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    .comment-quote {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* Accordion FAQ */
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .faq-q {
+      padding: 12px 16px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+    .faq-q:hover { background: rgba(0,0,0,0.02); }
+    .faq-arrow {
+      font-size: 12px;
+      color: var(--reddit-orange);
+      transition: transform 0.2s ease;
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+    .faq-a {
+      display: none;
+      padding: 0 16px 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      border-top: 1px solid var(--border-subtle);
+    }
+    .faq-item.open .faq-a {
+      display: block;
+      padding-top: 10px;
+    }
+
+    /* Sidebar Components */
+    .sidebar-card {
+      background: var(--sidebar-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+    .sidebar-header {
+      background: var(--sidebar-header);
+      color: #fff;
+      padding: 12px 14px;
+      font-weight: 700;
+      font-size: 13px;
+    }
+    .sidebar-body {
+      padding: 14px;
+      font-size: 12px;
+    }
+    .sidebar-bio {
+      font-size: 13px;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .meta-stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      padding: 10px 0;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 14px;
+    }
+    .meta-stat-val {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+    .meta-stat-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .rules-list {
+      list-style: none;
+      counter-reset: rule-num;
+      font-size: 12px;
+    }
+    .rules-list li {
+      counter-increment: rule-num;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      color: var(--text-main);
+    }
+    .rules-list li::before {
+      content: counter(rule-num) ".";
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .rules-list li:last-child { border-bottom: none; }
+
+    .email-copy-box {
+      background: rgba(0,0,0,0.03);
+      border: 1px solid var(--border);
+      padding: 8px 10px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 8px 0;
+      font-family: monospace;
+      font-size: 12px;
+      color: var(--text-main);
+    }
+    .btn-copy {
+      background: var(--reddit-blue);
+      color: #fff;
+      border: none;
+      padding: 3px 8px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .btn-copy:hover { background: #0060a8; }
+
+    /* Booking Modal */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.65);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+    .modal-backdrop.active { display: flex; }
+    .modal-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      max-width: 480px;
+      width: 100%;
+      padding: 24px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .modal-close {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+    .modal-close:hover { color: var(--text-main); }
+
+    /* Toast */
+    #toast {
+      visibility: hidden;
+      min-width: 220px;
+      background-color: var(--toast-bg);
+      color: var(--toast-text);
+      text-align: center;
+      border-radius: 20px;
+      padding: 10px 16px;
+      position: fixed;
+      z-index: 300;
+      left: 50%;
+      bottom: 30px;
+      transform: translateX(-50%);
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    }
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.2s, fadeout 0.2s 2.2s;
+    }
+    @keyframes fadein { from { bottom: 10px; opacity: 0; } to { bottom: 30px; opacity: 1; } }
+    @keyframes fadeout { from { bottom: 30px; opacity: 1; } to { bottom: 10px; opacity: 0; } }
+
+    /* Footer */
+    .footer-note {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="top-nav">
+    <a href="#" class="brand-group">
+      <div class="brand-icon">r/</div>
+      <span>r/Ravikesh</span>
+    </a>
+
+    <!-- Nav Tabs (P3) -->
+    <nav class="nav-tabs">
+      <a href="#work" class="nav-tab active">Work</a>
+      <a href="#how-it-works" class="nav-tab">How It Works</a>
+      <a href="#who-this-is-for" class="nav-tab">Who It's For</a>
+      <a href="#faq" class="nav-tab">FAQ</a>
+      <a href="#about" class="nav-tab">About</a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="nav-actions">
+      <button class="btn-theme" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle dark mode">◐</button>
+      <button onclick="openBookingModal()" class="btn btn-orange">Book a month trial</button>
+    </div>
+  </header>
+
+  <!-- Subreddit Style Banner -->
+  <section class="subreddit-banner">
+    <div class="banner-inner">
+      <div class="banner-badge">
+        <span class="banner-pulse"></span>
+        <span>Last updated: Today • 2 trial slots open for next month</span>
+      </div>
+      <h1 class="banner-title">Ravikesh — Reddit Growth for Startups</h1>
+      <p class="banner-subtitle">
+        I help early-stage SaaS, AI tools, and indie founders earn organic visibility on Reddit. No spam. No purchased upvotes. Work with me for a month, then judge.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Container -->
+  <div class="main-wrap">
+    <!-- Main Left Column -->
+    <main>
+
+      <!-- Pinned Hero Post (P1) -->
+      <article class="post-card pinned" id="about">
+        <div class="vote-col">
+          <button class="vote-arrow up" onclick="handleVote(this, 1)">▲</button>
+          <span class="vote-num" data-score="1842">1.8k</span>
+          <button class="vote-arrow down" onclick="handleVote(this, -1)">▼</button>
+        </div>
+
+        <div class="post-body">
+          <div class="post-meta">
+            <span>📌 Pinned by <strong>u/ravikesh_growth</strong></span>
+            <span>•</span>
+            <span class="flair flair-orange">[1-Month Trial]</span>
+            <span class="flair flair-green">[Verified Results]</span>
+            <span>•</span>
+            <span>Updated this week</span>
+          </div>
+
+          <h2 class="post-h1">Work with me for a month. Then judge.</h2>
+
+          <p class="pinned-hero-lead">
+            Most agencies sell 6-month retainers, dump links in subreddits, and get accounts banned within a week. I don't do that. I research where your audience talks, participate as a technical peer, and build an organic presence that compounds.
+          </p>
+
+          <!-- Single Clear CTA Above The Fold (P1) -->
+          <div class="cta-hero-bar">
+            <button onclick="openBookingModal()" class="btn btn-orange">
+              Book a month trial →
+            </button>
+            <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial" class="btn btn-outline">
+              Email fallback
+            </a>
+          </div>
+
+          <!-- Quick Proof Pill Strip (P0) -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 12px; margin-top: 10px;">
+            <a href="case/vilva-ai.html" class="flair flair-blue">Vilva.ai: 1,557 sessions ↗</a>
+            <a href="case/oskar-solo-founder.html" class="flair flair-green">Oskar: 1 → 1,420 karma ↗</a>
+            <a href="case/stealth-creator-startup.html" class="flair flair-purple">Stealth Creator: 340+ trials ↗</a>
+            <a href="case/creators-that-spark.html" class="flair flair-orange">r/CreatorsThatSpark: 1.2k members ↗</a>
+          </div>
+
+          <div class="post-footer-actions" style="margin-top: 14px;">
+            <span class="post-action">💬 4 verified case studies</span>
+            <span class="post-action" onclick="copyEmail()">📋 Share contact</span>
+            <span class="post-action" onclick="openBookingModal()">⚡ 30-day trial engagement</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section: Case Studies (P0 & P2) -->
+      <div class="section-header-row section-anchor" id="work">
+        <div class="section-header-title">
+          <span>📁 Proven Case Studies (All 1-Month Engagements)</span>
+        </div>
+      </div>
+
+      <!-- Case 1: Vilva.ai -->
+      <article class="post-card">
+        <div class="vote-col">
+          <button class="vote-arrow up" onclick="handleVote(this, 1)">▲</button>
+          <span class="vote-num" data-score="1557">1.5k</span>
+          <button class="vote-arrow down" onclick="handleVote(this, -1)">▼</button>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>Posted by u/ravikesh_growth</span>
+            <span>•</span>
+            <span class="flair flair-blue">SaaS &amp; AI</span>
+            <span class="flair flair-green">[Verified Traffic]</span>
+          </div>
+
+          <h3 class="post-h2">
+            <a href="case/vilva-ai.html">Vilva.ai: 1,557 Organic Referral Sessions in 30 Days</a>
+          </h3>
+
+          <div class="result-callout">
+            <span>Verified Metric: 1,557 sessions • 84 trial signups • 0 bans</span>
+            <a href="case/vilva-ai.html" style="font-size: 11px; text-decoration: underline;">Read full case study ↗</a>
+          </div>
+
+          <p class="post-desc">
+            Vilva.ai had zero organic presence on Reddit. In 4 weeks, we researched 16 developer and productivity subreddits, answered workflow frustration threads with free solutions, and converted power users.
+          </p>
+
+          <div class="post-footer-actions">
+            <a href="case/vilva-ai.html" class="post-action">📊 View Analytics Chart</a>
+            <a href="case/vilva-ai.html" class="post-action">💡 What I Learned</a>
+            <a href="case/vilva-ai.html" class="post-action">Read details →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 2: Creator economy startup (stealth) -->
+      <article class="post-card">
+        <div class="vote-col">
+          <button class="vote-arrow up" onclick="handleVote(this, 1)">▲</button>
+          <span class="vote-num" data-score="942">942</span>
+          <button class="vote-arrow down" onclick="handleVote(this, -1)">▼</button>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>Posted by u/ravikesh_growth</span>
+            <span>•</span>
+            <span class="flair flair-purple">[Stealth Mode]</span>
+            <span class="flair">Creator Economy</span>
+          </div>
+
+          <h3 class="post-h2">
+            <a href="case/stealth-creator-startup.html">Creator Economy Startup (Stealth): 340+ Creator Beta Trials Across 4 Communities</a>
+          </h3>
+
+          <div class="result-callout">
+            <span>Verified Metric: 24 active conversations • 340+ creator signups • 0 flags</span>
+            <a href="case/stealth-creator-startup.html" style="font-size: 11px; text-decoration: underline;">Read full case study ↗</a>
+          </div>
+
+          <p class="post-desc">
+            Product details kept strictly confidential while patent is pending. Engaged video editors and podcasters directly in threads discussing workflow bottlenecks. Beta testers invited privately upon request.
+          </p>
+
+          <div class="post-footer-actions">
+            <a href="case/stealth-creator-startup.html" class="post-action">🔒 Confidentiality Protocol</a>
+            <a href="case/stealth-creator-startup.html" class="post-action">💡 What I Learned</a>
+            <a href="case/stealth-creator-startup.html" class="post-action">Read details →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 3: Oskar (solo founder) -->
+      <article class="post-card">
+        <div class="vote-col">
+          <button class="vote-arrow up" onclick="handleVote(this, 1)">▲</button>
+          <span class="vote-num" data-score="1420">1.4k</span>
+          <button class="vote-arrow down" onclick="handleVote(this, -1)">▼</button>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>Posted by u/ravikesh_growth</span>
+            <span>•</span>
+            <span class="flair flair-green">[Permission Confirmed]</span>
+            <span class="flair">Solo Dev</span>
+          </div>
+
+          <h3 class="post-h2">
+            <a href="case/oskar-solo-founder.html">Oskar (Solo Founder): From 1 Karma to 150+ Signups &amp; First Paying Subscribers</a>
+          </h3>
+
+          <div class="result-callout">
+            <span>Verified Metric: 1 → 1,420 karma • 150+ early users • First paying subscribers</span>
+            <a href="case/oskar-solo-founder.html" style="font-size: 11px; text-decoration: underline;">Read full case study ↗</a>
+          </div>
+
+          <p class="post-desc">
+            Solo developer afraid of getting roasted for self-promo. Warmed up account with genuine engineering solutions in r/SideProject, turned high-intent comments into 150+ trials, and unlocked paying users.
+          </p>
+
+          <div class="post-footer-actions">
+            <a href="case/oskar-solo-founder.html" class="post-action">💬 Founder Quote</a>
+            <a href="case/oskar-solo-founder.html" class="post-action">💡 What I Learned</a>
+            <a href="case/oskar-solo-founder.html" class="post-action">Read details →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Case 4: CreatorsThatSpark -->
+      <article class="post-card">
+        <div class="vote-col">
+          <button class="vote-arrow up" onclick="handleVote(this, 1)">▲</button>
+          <span class="vote-num" data-score="1240">1.2k</span>
+          <button class="vote-arrow down" onclick="handleVote(this, -1)">▼</button>
+        </div>
+        <div class="post-body">
+          <div class="post-meta">
+            <span>Posted by u/ravikesh_growth</span>
+            <span>•</span>
+            <span class="flair flair-orange">[Live Community]</span>
+            <span class="flair">Community Building</span>
+          </div>
+
+          <h3 class="post-h2">
+            <a href="case/creators-that-spark.html">CreatorsThatSpark: Building a 1,240+ Member Subreddit from Scratch</a>
+          </h3>
+
+          <div class="result-callout">
+            <span>Verified Metric: 1,240 subscribers • 8,400+ weekly uniques • $0 ad spend</span>
+            <a href="case/creators-that-spark.html" style="font-size: 11px; text-decoration: underline;">Read full case study ↗</a>
+          </div>
+
+          <p class="post-desc">
+            Built and moderated <a href="https://www.reddit.com/r/CreatorsThatSpark" target="_blank" rel="noopener">r/CreatorsThatSpark ↗</a> into a self-sustaining forum for digital creators. Weekly recurring formats and strict spam moderation.
+          </p>
+
+          <div class="post-footer-actions">
+            <a href="https://www.reddit.com/r/CreatorsThatSpark" target="_blank" rel="noopener" class="post-action">🔗 Visit r/CreatorsThatSpark ↗</a>
+            <a href="case/creators-that-spark.html" class="post-action">💡 What I Learned</a>
+            <a href="case/creators-that-spark.html" class="post-action">Read details →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Section: How a Month Works (P1) -->
+      <div class="section-header-row section-anchor" id="how-it-works">
+        <div class="section-header-title">
+          <span>🗓️ How a 1-Month Trial Works</span>
+        </div>
+      </div>
+
+      <div class="week-grid">
+        <div class="week-card">
+          <div class="week-badge">Week 01</div>
+          <div class="week-title">Research &amp; Setup</div>
+          <p class="week-text">
+            I study your product, map 15–30 relevant subreddits, inspect moderation rules, and define our technical narrative. Zero posts go live until we know community tolerance.
+          </p>
+        </div>
+        <div class="week-card">
+          <div class="week-badge">Week 02</div>
+          <div class="week-title">First Engagement</div>
+          <p class="week-text">
+            I answer high-intent problem threads where users actively seek solutions. 100% value-first replies. Zero hard pitches or unsolicited links.
+          </p>
+        </div>
+        <div class="week-card">
+          <div class="week-badge">Week 03</div>
+          <div class="week-title">Community &amp; Content</div>
+          <p class="week-text">
+            Publish authentic founder teardowns, engineering benchmarks, or community AMAs. Product mentioned only with transparent disclosures when invited.
+          </p>
+        </div>
+        <div class="week-card">
+          <div class="week-badge">Week 04</div>
+          <div class="week-title">Review with Numbers</div>
+          <p class="week-text">
+            We review referral traffic, trial signups, and community feedback. I hand over a sustainable playbook for your team—or we continue month-by-month.
+          </p>
+        </div>
+      </div>
+
+      <!-- Section: Who This Is For (P1) -->
+      <div class="section-header-row section-anchor" id="who-this-is-for">
+        <div class="section-header-title">
+          <span>🎯 Who This Is For</span>
+        </div>
+      </div>
+
+      <div class="who-grid">
+        <div class="who-box">
+          <div class="who-tag">Early-stage SaaS</div>
+          <p class="who-desc">Software teams with real utility whose buyers actively ask for recommendations in subreddits.</p>
+        </div>
+        <div class="who-box">
+          <div class="who-tag">AI &amp; Tech Tools</div>
+          <p class="who-desc">Products solving specific workflow pain points without the generic "AI magic" buzzwords.</p>
+        </div>
+        <div class="who-box">
+          <div class="who-tag">Creator Products</div>
+          <p class="who-desc">Tools built for video editors, podcasters, writers, and digital media makers.</p>
+        </div>
+        <div class="who-box">
+          <div class="who-tag">Founders Stuck on Reddit</div>
+          <p class="who-desc">Builders with 1 karma or previous bad experiences who want a safe, proven path to engage.</p>
+        </div>
+      </div>
+
+      <!-- Section: Testimonials (P2) -->
+      <div class="section-header-row">
+        <div class="section-header-title">
+          <span>💬 Client Comments</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <!-- Oskar Testimonial -->
+        <div class="comment-item">
+          <div class="comment-top">
+            <span class="comment-user">u/oskar_builder</span>
+            <span>• 286 upvotes • Verified Solo Founder</span>
+          </div>
+          <p class="comment-quote">
+            "I was genuinely terrified of posting on Reddit because I thought people would tear me apart for promoting my tool. Ravikesh showed me that if you just share the actual engineering challenges honestly and help people first, developers actually cheer you on. We got 150+ signups and our first paying subscribers in under 3 weeks."
+          </p>
+        </div>
+
+        <!-- SaaS Founder Testimonial -->
+        <div class="comment-item" style="border-left-color: var(--reddit-blue);">
+          <div class="comment-top">
+            <span class="comment-user">u/saas_growth_lead</span>
+            <span>• 192 upvotes • Verified Client</span>
+          </div>
+          <p class="comment-quote">
+            "Every agency wanted a 6-month minimum retainer. Ravikesh said 'work with me for a month, then judge.' In 30 days we saw 1.5k targeted visits and zero mod warnings. Refreshing honesty."
+          </p>
+        </div>
+      </div>
+
+      <!-- Section: FAQ (P1) -->
+      <div class="section-header-row section-anchor" id="faq">
+        <div class="section-header-title">
+          <span>❓ Frequently Asked Questions</span>
+        </div>
+      </div>
+
+      <div class="faq-container">
+        <!-- FAQ 1 -->
+        <div class="faq-item open">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Is this spam?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            No. Reddit users hate spam, and moderators ban it immediately. I only contribute thoughtful, detailed answers to threads where people are actively asking for help or tool recommendations. If mentioning your product isn't relevant to the thread, I don't mention it.
+          </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Do you use fake accounts or purchased upvotes?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            Never. Buying upvotes or using deceptive sockpuppet accounts violates Reddit's rules and gets domains blacklisted permanently. I operate with real, aged accounts or help warm up the founder's own account with transparent disclosures.
+          </div>
+        </div>
+
+        <!-- FAQ 3 -->
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>How is success measured?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            By real business metrics: qualified referral sessions (tracked via clean UTM parameters), trial activations, positive community sentiment, and zero bans. Not vanity karma.
+          </div>
+        </div>
+
+        <!-- FAQ 4 -->
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>What do I get at the end of the month?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            You get a detailed analytics report of all discussions, direct feedback from real users, a list of validated target subreddits, and an actionable playbook so your internal team can continue the work without me if you choose.
+          </div>
+        </div>
+
+        <!-- FAQ 5 -->
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>How much does a 1-month trial cost?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            I work on a flat, transparent monthly fee for the 30-day sprint. No long-term contracts. Send an email or book a call, and I'll send the scope based on your category complexity.
+          </div>
+        </div>
+
+        <!-- FAQ 6 -->
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">
+            <span>Can my product remain in stealth mode?</span>
+            <span class="faq-arrow">▼</span>
+          </div>
+          <div class="faq-a">
+            Yes. As demonstrated in our Creator Economy case study, we can recruit beta testers through private direct message invites without ever publishing your product name or domain in open threads.
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- Sidebar Right Column -->
+    <aside>
+      <!-- About Sidebar Card -->
+      <div class="sidebar-card">
+        <div class="sidebar-header">About r/Ravikesh</div>
+        <div class="sidebar-body">
+          <p class="sidebar-bio">
+            Independent Reddit growth specialist for startup founders and engineering teams. Focused on high-intent community engagement without spam.
+          </p>
+
+          <div class="meta-stat-grid">
+            <div>
+              <div class="meta-stat-val">1-Month</div>
+              <div class="meta-stat-lbl">Trial model</div>
+            </div>
+            <div>
+              <div class="meta-stat-val">0 Bans</div>
+              <div class="meta-stat-lbl">Safety record</div>
+            </div>
+          </div>
+
+          <div style="margin-top: 10px;">
+            <button onclick="openBookingModal()" class="btn btn-orange" style="width: 100%; margin-bottom: 8px;">
+              Book a month trial
+            </button>
+            <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial" class="btn btn-outline" style="width: 100%;">
+              Email me directly
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rules of Working Together -->
+      <div class="sidebar-card">
+        <div class="sidebar-header" style="background:#545456;">Rules of Working Together</div>
+        <div class="sidebar-body">
+          <ol class="rules-list">
+            <li><strong>No spam:</strong> We never drop blind links in threads.</li>
+            <li><strong>Real accounts only:</strong> No bought karma or fake bots.</li>
+            <li><strong>1-month trial:</strong> Work with me for a month, then judge.</li>
+            <li><strong>Weekly reporting:</strong> Transparent review every 7 days.</li>
+          </ol>
+        </div>
+      </div>
+
+      <!-- Contact & Socials -->
+      <div class="sidebar-card">
+        <div class="sidebar-header" style="background:#272729;">Direct Contact</div>
+        <div class="sidebar-body">
+          <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 6px;">
+            Copy email address or send mail:
+          </p>
+          <div class="email-copy-box">
+            <span id="emailText">ravikeshk464@gmail.com</span>
+            <button class="btn-copy" onclick="copyEmail()">Copy</button>
+          </div>
+          <div style="margin-top: 10px; font-size: 12px;">
+            <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial">✉ Send prefilled email ↗</a>
+          </div>
+          <div style="margin-top: 6px; font-size: 12px;">
+            <a href="https://linkedin.com" target="_blank" rel="noopener">🔗 Connect on LinkedIn ↗</a>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Booking Modal (P1) -->
+  <div class="modal-backdrop" id="bookingModal" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeBookingModal()">✕</button>
+      <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 8px;">
+        <div class="brand-icon" style="width: 24px; height: 24px; font-size: 12px;">r/</div>
+        <span style="font-size: 12px; font-weight: 700; color: var(--reddit-orange); text-transform: uppercase;">1-Month Reddit Trial</span>
+      </div>
+      <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 8px;">Book a Month Trial</h3>
+      <p style="font-size: 13px; color: var(--text-muted); line-height: 1.5; margin-bottom: 18px;">
+        Tell me what you're building. I'll audit your category's subreddits, check competitor discussions, and reply within 24 hours with an honest assessment of whether Reddit will drive users for you.
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <a href="mailto:ravikeshk464@gmail.com?subject=Reddit%20month%20trial&body=Hi%20Ravikesh,%0A%0AProduct%20name%20/%20link:%20%0AWhat%20it%20does:%20%0ATarget%20audience:%20%0AHave%20you%20tried%20Reddit%20before:%20" class="btn btn-orange" style="padding: 12px;">
+          Send Email with Prefilled Scope ✉
+        </a>
+        <button onclick="copyEmail(); closeBookingModal();" class="btn btn-outline" style="padding: 12px;">
+          Copy Email (ravikeshk464@gmail.com)
+        </button>
+      </div>
+
+      <div style="margin-top: 16px; font-size: 11px; color: var(--text-muted); text-align: center;">
+        No high-pressure sales pitch. If Reddit isn't right for your product stage, I'll tell you directly.
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast">Email copied to clipboard!</div>
+
+  <!-- Footer -->
+  <footer class="footer-note">
+    <p>© 2026 Ravikesh. Reddit-style independent portfolio. Reddit is a registered trademark of Reddit, Inc. No official affiliation.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('themeToggle');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && prefersDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    toggle.addEventListener('click', () => {
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const newTheme = isDark ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('theme', newTheme);
+    });
+
+    // Interactive vote logic
+    function handleVote(btn, delta) {
+      const parent = btn.parentElement;
+      const numElem = parent.querySelector('.vote-num');
+      let score = parseInt(numElem.getAttribute('data-score') || '100');
+      const isUp = btn.classList.contains('up');
+      const isDown = btn.classList.contains('down');
+
+      if (btn.classList.contains('voted')) {
+        btn.classList.remove('voted');
+        score -= delta;
+      } else {
+        const sibling = isUp ? parent.querySelector('.down') : parent.querySelector('.up');
+        if (sibling && sibling.classList.contains('voted')) {
+          sibling.classList.remove('voted');
+          score += delta;
+        }
+        btn.classList.add('voted');
+        score += delta;
+      }
+      numElem.setAttribute('data-score', score);
+      numElem.textContent = score > 999 ? (score / 1000).toFixed(1) + 'k' : score;
+    }
+
+    // FAQ Accordion
+    function toggleFaq(elem) {
+      const parent = elem.parentElement;
+      parent.classList.toggle('open');
+    }
+
+    // Modal
+    function openBookingModal() {
+      document.getElementById('bookingModal').classList.add('active');
+    }
+    function closeBookingModal() {
+      document.getElementById('bookingModal').classList.remove('active');
+    }
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'bookingModal') closeBookingModal();
+    }
+
+    // Copy Email
+    function copyEmail() {
+      const email = "ravikeshk464@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        showToast("Copied: " + email);
+      }).catch(() => {
+        showToast("Email: " + email);
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.className = "show";
+      setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 2400);
+    }
+
+    // Scroll active tab highlight (P3)
+    const sections = document.querySelectorAll('.section-anchor, #about');
+    const tabs = document.querySelectorAll('.nav-tab');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 100;
+        if (window.pageYOffset >= top) {
+          current = sec.getAttribute('id');
+        }
+      });
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('href') === '#' + current) {
+          tab.classList.add('active');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
