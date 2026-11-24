@@ -10,7 +10,7 @@ A simple, conventional personal portfolio for Ravikesh — Reddit marketer, foun
 - Responsive on desktop and mobile.
 
 ## Work
-- Vilva.ai — 300+ users from Reddit in 1 month.
+- Vilva.ai — 200+ users from Reddit in 1 month.
 - Creator Economy Startup (Stealth) — 30+ beta creators recruited.
 - Oskar — Helped Oskar gain 500+ karma himself.
 - CreatorsThatSpark — 70+ members in 5 days.
