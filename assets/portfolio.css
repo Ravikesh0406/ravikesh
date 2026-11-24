@@ -53,6 +53,11 @@ h1 {
 .section ul { margin-left: 20px; }
 .section li { margin-bottom: 8px; }
 
+.evidence-list { list-style: none; margin-left: 0 !important; }
+.evidence-list li { margin-bottom: 10px; }
+.evidence-list a { color: var(--orange); text-decoration: none; }
+.evidence-list a:hover { text-decoration: underline; }
+
 .placeholder {
   border: 1px dashed var(--border);
   background: var(--card);
