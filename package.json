@@ -1,9 +1,0 @@
-{
-  "name": "ravikesh-reddit-portfolio",
-  "version": "1.0.0",
-  "private": true,
-  "description": "Ravikesh — Reddit Growth for Startups Portfolio",
-  "scripts": {
-    "dev": "node server.js"
-  }
-}

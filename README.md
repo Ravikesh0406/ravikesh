@@ -22,8 +22,6 @@ A simple, conventional personal portfolio for Ravikesh — Reddit marketer, foun
 
 ## Local server
 ```bash
-npm run dev
-# or
-node server.js
+python3 -m http.server 3000
 ```
 Open http://localhost:3000
